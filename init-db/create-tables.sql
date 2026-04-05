@@ -11,7 +11,8 @@ DROP TABLE IF EXISTS Video;
 */
 CREATE TABLE User {
     UserID INT NOT NULL AUTO_INCREMENT,
-    UserName VARCHAR(50),
+    UserName VARCHAR(100) NOT NULL UNIQUE,
+    UserPasswordHash VARCHAR(255) NOT NULL,
     PRIMARY KEY(UserID)
 }
 
@@ -20,6 +21,7 @@ CREATE TABLE User {
 */
 CREATE TABLE Video {
     VideoID INT NOT NULL AUTO_INCREMENT,
+    VideoPath VARCHAR(128),
     PRIMARY KEY(VideoID)
 }
 
