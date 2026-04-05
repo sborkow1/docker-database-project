@@ -6,6 +6,7 @@ USE Billiards;
 DROP TABLE IF EXISTS Downloads;
 DROP TABLE IF EXISTS Subscriptions;
 DROP TABLE IF EXISTS Videos;
+DROP TABLE IF EXISTS Matches;
 DROP TABLE IF EXISTS Plans;
 DROP TABLE IF EXISTS Users;
 
@@ -46,14 +47,27 @@ CREATE TABLE Subscriptions (
 );
 
 /*
+    Matches table - tracks matches played
+*/
+CREATE TABLE Matches(
+    MatchID INT AUTO_INCREMENT,
+    MatchTable INT NOT NULL, -- The table the match was played at
+    MatchDate DATETIME NOT NULL,
+    MatchType ENUM('8-ball', '9-ball', '10-ball') DEFAULT '8-ball',
+    PRIMARY KEY(MatchID)
+);
+
+/*
     Videos table - stores information on recorded match videos
 */
 CREATE TABLE Videos(
     VideoID INT AUTO_INCREMENT,
-    VideoPath VARCHAR(255) NOT NULL,
+    MatchID INT NOT NULL,
+    VideoPath VARCHAR(255) NOT NULL, -- The location of the video file
     VideoSize BIGINT NOT NULL,
     VideoDate DATETIME NOT NULL,
-    PRIMARY KEY(VideoID)
+    PRIMARY KEY(VideoID),
+    FOREIGN KEY (MatchID) REFERENCES Matches(MatchID)
 );
 
 /*
