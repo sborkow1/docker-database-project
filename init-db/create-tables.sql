@@ -35,6 +35,10 @@ CREATE TABLE Subscription {
 /*
     Match table - tracks the matches that take place at the venue
 */
+CREATE TABLE Match {
+    
+}
+
 
 /*
     Video table - stores information on recorded match videos
@@ -43,4 +47,18 @@ CREATE TABLE Video {
     VideoID INT NOT NULL AUTO_INCREMENT,
     VideoPath VARCHAR(255),
     PRIMARY KEY(VideoID)
+}
+
+/*
+    Download table - for tracking who downloads what and when
+*/
+CREATE TABLE Download {
+    DownloadID INT NOT NULL AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    VideoID INT NOT NULL,
+    DownloadDate DATE NOT NULL,
+    DownloadIP VARCHAR(30) NOT NULL,
+    PRIMARY KEY(DownloadID),
+    FOREIGN KEY UserID REFERENCES User(UserID),
+    FOREIGN KEY VideoID REFERENCES Video(VideoID)
 }
