@@ -51,6 +51,7 @@ CREATE TABLE Subscriptions (
 */
 CREATE TABLE Matches(
     MatchID INT AUTO_INCREMENT,
+    MatchTitle VARCHAR(255) NOT NULL,
     MatchTable INT NOT NULL, -- The table the match was played at
     MatchDate DATETIME NOT NULL,
     MatchType ENUM('8-ball', '9-ball', '10-ball') DEFAULT '8-ball',
@@ -65,7 +66,6 @@ CREATE TABLE Videos(
     MatchID INT NOT NULL,
     VideoPath VARCHAR(255) NOT NULL, -- The location of the video file
     VideoSize BIGINT NOT NULL,
-    VideoDate DATETIME NOT NULL,
     PRIMARY KEY(VideoID),
     FOREIGN KEY (MatchID) REFERENCES Matches(MatchID)
 );
