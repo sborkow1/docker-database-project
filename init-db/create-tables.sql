@@ -27,7 +27,7 @@ CREATE TABLE Users (
 CREATE TABLE Plans (
     PlanID INT AUTO_INCREMENT,
     PlanName VARCHAR(50) NOT NULL,
-    PlanDuration INT NOT NULL,
+    PlanDuration INT NOT NULL, -- Stored in days
     PlanPrice DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY(PlanID)
 );
