@@ -24,9 +24,17 @@ CREATE TABLE User {
 CREATE TABLE Subscription {
     SubscriptionID INT NOT NULL AUTO_INCREMENT,
     UserID INT NOT NULL,
+    SubscriptionPlan SET("Monthly", "Yearly"),
+    SubscriptionStartDate DATE NOT NULL,
+    SubscriptionEndDate DATE NOT NULL,
+    SubscriptionStatus SET("Active", "Expired", "Cancelled"),
     PRIMARY KEY (SubscriptionID),
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 }
+
+/*
+    Match table - tracks the matches that take place at the venue
+*/
 
 /*
     Video table - stores information on recorded match videos
