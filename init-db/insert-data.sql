@@ -18,16 +18,20 @@ VALUES
 /*
     Insert data into the Subcriptions table
 */
-INSERT INTO Subscriptions ()
+INSERT INTO Subscriptions (UserID, PlanID, SubscriptionStartDate, SubscriptionEndDate)
 VALUES
-(),
-(),
-();
+(1, 1, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+(2, 1, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+(3, 2, NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR));
 
 /*
     Insert data into the Matches table
 */
-
+INSERT INTO Matches (MatchTitle, MatchTable, MatchDate, MatchType)
+VALUES
+('Blue Team vs. Red Team', 10, NOW(), '9-ball'),
+('Home Team vs. Away Team', 1, NOW(), '8-ball'),
+('Them Team vs. Us Team', 5, NOW(), '10-ball');
 
 /*
     Insert data into the Videos table
