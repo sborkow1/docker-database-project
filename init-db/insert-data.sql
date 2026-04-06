@@ -1,3 +1,6 @@
+-- Use the Billiards database, just in case
+USE Billiards;
+
 /*
     Insert example data into the Users table
 */
