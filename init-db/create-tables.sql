@@ -65,7 +65,7 @@ CREATE TABLE Videos(
     VideoID INT AUTO_INCREMENT,
     MatchID INT NOT NULL,
     VideoPath VARCHAR(255) NOT NULL, -- The location of the video file
-    VideoSize BIGINT NOT NULL,
+    VideoSize INT NOT NULL, -- Stored in megabytes
     PRIMARY KEY(VideoID),
     FOREIGN KEY (MatchID) REFERENCES Matches(MatchID)
 );

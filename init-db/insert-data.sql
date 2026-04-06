@@ -1,5 +1,5 @@
 /*
-    Insert data into the Users table
+    Insert example data into the Users table
 */
 INSERT INTO Users (UserName, UserPasswordHash, UserEmail)
 VALUES 
@@ -8,7 +8,7 @@ VALUES
 ('Tacofriend', '65AsPl7U8iB12', 'Tacofriend@yahoo.com');
 
 /*
-    Insert data into the Plans table
+    Insert example data into the Plans table
 */
 INSERT INTO Plans (PlanName, PlanDuration, PlanPrice)
 VALUES
@@ -16,7 +16,7 @@ VALUES
 ('Yearly', 365, 39.99);
 
 /*
-    Insert data into the Subcriptions table
+    Insert example data into the Subcriptions table
 */
 INSERT INTO Subscriptions (UserID, PlanID, SubscriptionStartDate, SubscriptionEndDate)
 VALUES
@@ -25,7 +25,7 @@ VALUES
 (3, 2, NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR));
 
 /*
-    Insert data into the Matches table
+    Insert example data into the Matches table
 */
 INSERT INTO Matches (MatchTitle, MatchTable, MatchDate, MatchType)
 VALUES
@@ -34,9 +34,19 @@ VALUES
 ('Them Team vs. Us Team', 5, NOW(), '10-ball');
 
 /*
-    Insert data into the Videos table
+    Insert example data into the Videos table
 */
+INSERT INTO Videos (MatchID, VideoPath, VideoSize)
+VALUES
+(1, '/home/genericuser/videos/table10/video1', 2000),
+(2, '/home/genericuser/videos/table1/video1', 1500),
+(3, '/home/genericuser/videos/table5/video1', 3500);
 
 /*
-    Insert data into the Downloads table
+    Insert example data into the Downloads table
 */
+INSERT INTO Downloads (UserID, VideoID, DownloadDate, DownloadIP)
+VALUES
+(1, 1, NOW(), '192.168.1.1'),
+(2, 2, NOW(), '192.168.1.2'),
+(3, 3, NOW(), '192.168.1.3');
