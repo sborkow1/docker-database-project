@@ -1,18 +1,45 @@
-version: "3.8"
-
 services:
   db:
-    image: postgres:15
+    image: mysql:8.0
     container_name: my_project_db
     environment:
-      POSTGRES_USER: student
-      POSTGRES_PASSWORD: student123
-      POSTGRES_DB: projectdb
+      MYSQL_USER: student
+      MYSQL_PASSWORD: student123
+      MYSQL_ROOT_PASSWORD: root_student123
+      TZ: UTC
     ports:
-      - "5432:5432"
+      - "3307:3306"
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./init-db:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+      - ./init-db:/docker-entrypoint-initdb.d:ro
 
-volumes:
-  db_data:
+    networks:
+      - mysql_network # Connect this service to the custom network
+    restart: unless-stopped # Always restart unless explicitly stopped
+
+    # Resource limits (adjust as needed)
+    deploy:
+      resources:
+
+      
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+    healthcheck: # Health check to monitor MySQL readiness
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"] # Run 'mysqladmin ping' to check if MySQL is alive
+      interval: 10s # Run the health check every 10 seconds
+      timeout: 5s # Wait up to 5 seconds for the health check to succeed
+      retries: 5 # Mark as unhealthy after 5 consecutive failures
+      start_period: 20s # Wait 20 seconds before starting health checks (gives MySQL time to initialize)
+
+
+volumes: # Define named volumes for persistent data
+  db_data: # Volume for MySQL data
+
+
+networks: # Define custom networks for service communication
+  mysql_network: # Custom network for the database
